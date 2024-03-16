@@ -94,9 +94,11 @@ jobs:
         echo lalala
         ls /home/runner/work/github-base/github-base
         echo 'current dir:' $PWD ${GITHUB_REF}
+        echo 'info------------'
+        ls /home/runner/work/github-base/github-base/public
 
     - name: Deploy
       uses: peaceiris/actions-gh-pages@v3
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./public
+        publish_dir: public
