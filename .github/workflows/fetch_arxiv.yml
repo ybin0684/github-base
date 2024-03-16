@@ -43,61 +43,34 @@ jobs:
         hugo-version: "0.123.8"
         extended: true
 
-    # - name: Set up Node.js
-    #   uses: actions/setup-node@v2
-    #   with:
-    #     node-version: '14'
-
-    # - name: Install Hugo
+    # - name: git_pull
     #   run: |
-    #     npm install -g hugo
-    #     hugo version
-
-    # - name: Build the site
-    #   run: |
-    #     mkdir -p public
-    #     cd $GITHUB_WORKSPACE
-    #     echo $PWD
-    #     ls
-    #     hugo -v
-
-    # - name: Deploy to GitHub Pages
-    #   uses: peaceiris/actions-gh-pages@v3
-    #   with:
-    #     github_token: ${{ secrets.GITHUB_TOKEN }}
-    #     publish_dir: ./public
-        # force_push: true
-
-
-
-    - name: git_pull
-      run: |
-        git pull
+    #     git pull
 
     - name: Build
       run: hugo --minify --cleanDestinationDir
 
-    - name: Add and commit changes
-      run: |
-        git config --local user.email "action@github.com"
-        git config --local user.name "Github Action"
-        git add content/basics/first_content.md
-        git add public/*
-        git commit -m "Update arXiv papers list"
+    # - name: Add and commit changes
+    #   run: |
+    #     git config --local user.email "action@github.com"
+    #     git config --local user.name "Github Action"
+    #     git add content/basics/first_content.md
+    #     git add public/*
+    #     git commit -m "Update arXiv papers list"
 
-    - name: Push changes
-      id: git_push
-      run: |
-        # Pull first
-        # git pull # --rebase origin "${GITHUB_REF}"
-        # Push after
-        git push origin "${GITHUB_REF}"
-        ls /home/runner/work/github-base/
-        echo lalala
-        ls /home/runner/work/github-base/github-base
-        echo 'current dir:' $PWD ${GITHUB_REF}
-        echo 'info------------'
-        ls /home/runner/work/github-base/github-base/public
+    # - name: Push changes
+    #   id: git_push
+    #   run: |
+    #     # Pull first
+    #     # git pull # --rebase origin "${GITHUB_REF}"
+    #     # Push after
+    #     git push origin "${GITHUB_REF}"
+    #     ls /home/runner/work/github-base/
+    #     echo lalala
+    #     ls /home/runner/work/github-base/github-base
+    #     echo 'current dir:' $PWD ${GITHUB_REF}
+    #     echo 'info------------'
+    #     ls /home/runner/work/github-base/github-base/public
 
     - name: Deploy
       uses: peaceiris/actions-gh-pages@v3
