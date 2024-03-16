@@ -1,22 +1,5 @@
 # .github/workflows/fetch_arxiv.yml
 name: Fetch Daily arXiv Papers
-
-# permissions:
-#   contents: write
-
-# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
-# permissions:
-#   contents: read
-#   pages: write
-#   id-token: write
-
-# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
-# However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
-# concurrency:
-#   group: "pages"
-#   cancel-in-progress: false
-
-
   
 on:
   # schedule:
@@ -26,9 +9,6 @@ on:
 
 jobs:
   build:
-    # environment:
-    #   name: github-pages
-    #   url: ${{ steps.deployment.outputs.page_url }}
     # Grant GITHUB_TOKEN the permissions required to make a Pages deployment
     permissions:
       pages: write      # to deploy to Pages
@@ -41,11 +21,6 @@ jobs:
       
     runs-on: ubuntu-latest
     
-    # permissions:
-    #   contents: write
-    #   packages: write
-    
-
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2
@@ -71,12 +46,8 @@ jobs:
         hugo-version: "0.123.8"
         extended: true
 
-    # - name: git_pull
-    #   run: |
-    #     git pull
-
     - name: Build
-      run: hugo --minify --cleanDestinationDir
+      run: hugo --gc --minify --cleanDestinationDir
 
     # - name: Add and commit changes
     #   run: |
@@ -93,19 +64,6 @@ jobs:
     #     # git pull # --rebase origin "${GITHUB_REF}"
     #     # Push after
     #     git push origin "${GITHUB_REF}"
-    #     ls /home/runner/work/github-base/
-    #     echo lalala
-    #     ls /home/runner/work/github-base/github-base
-    #     echo 'current dir:' $PWD ${GITHUB_REF}
-    #     echo 'info------------'
-    #     ls /home/runner/work/github-base/github-base/public
-
-    # - name: Deploy
-    #   uses: peaceiris/actions-gh-pages@v3
-    #   with:
-    #     github_token: ${{ secrets.GITHUB_TOKEN }}
-    #     publish_dir: public
-    #     allow_empty_commit: true
 
     - name: Upload artifact
       uses: actions/upload-pages-artifact@v3
@@ -113,10 +71,6 @@ jobs:
         # Upload entire repository
         path: './public'
 
-
-    # Specify runner + deployment step
-    # runs-on: ubuntu-latest
-    # steps:
     - name: Deploy to GitHub Pages
       id: deployment
       uses: actions/deploy-pages@v4
