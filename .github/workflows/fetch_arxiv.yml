@@ -31,8 +31,8 @@ jobs:
 
     - name: Add and commit changes
       run: |
-        git config --local user.email "ybin0684@outlook.com"
-        git config --local user.name "ybin0684"
+        git config --local user.email "action@github.com"
+        git config --local user.name "Github Action"
         git add content/basics/first_content.md
         git commit -m "Update arXiv papers list"
 
