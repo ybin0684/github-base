@@ -45,10 +45,17 @@ jobs:
         git commit -m "Update arXiv papers list"
 
     - name: Push changes
-      uses: ad-m/github-push-action@master
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        force: true
+      # uses: ad-m/github-push-action@master
+      # with:
+      #   github_token: ${{ secrets.GITHUB_TOKEN }}
+      #   force: true
+      id: git_push
+      run: |
+        # Pull first
+        git pull --rebase origin "${GITHUB_REF}"
+
+        # Push after
+        git push origin "${GITHUB_REF}"
 
     - name: Set up Node.js
       uses: actions/setup-node@v2
