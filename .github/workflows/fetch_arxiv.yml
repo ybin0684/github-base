@@ -68,12 +68,14 @@ jobs:
     #     publish_dir: ./public
         # force_push: true
 
-    - name: Build
-      run: hugo --minify
+
 
     - name: git_pull
       run: |
         git pull
+
+    - name: Build
+      run: hugo --minify --cleanDestinationDir
 
     - name: Add and commit changes
       run: |
