@@ -99,6 +99,7 @@ jobs:
     # uses: crazy-max/ghaction-github-pages@c05ee637ec73429400a359430db8e5629f3f2564
       uses: crazy-max/ghaction-github-pages@v4.0.0
       with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
       # # Git domain (default github.com)
       # domain: # optional, default is github.com
       # # GitHub repository where assets will be deployed (default $GITHUB_REPOSITORY)
