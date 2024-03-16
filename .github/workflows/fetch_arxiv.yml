@@ -78,6 +78,7 @@ jobs:
         mkdir -p public
         cd $GITHUB_WORKSPACE
         echo $PWD
+        ls
         hugo -v
 
     - name: Deploy to GitHub Pages
