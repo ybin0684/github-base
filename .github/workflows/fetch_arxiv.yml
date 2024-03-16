@@ -44,19 +44,6 @@ jobs:
         git add content/basics/first_content.md
         git commit -m "Update arXiv papers list"
 
-    - name: Push changes
-      # uses: ad-m/github-push-action@master
-      # with:
-      #   github_token: ${{ secrets.GITHUB_TOKEN }}
-      #   force: true
-      id: git_push
-      run: |
-        # Pull first
-        git pull --rebase origin "${GITHUB_REF}"
-
-        # Push after
-        git push origin "${GITHUB_REF}"
-
     - name: Setup Hugo
       uses: peaceiris/actions-hugo@v2
       with:
@@ -90,6 +77,14 @@ jobs:
 
     - name: Build
       run: hugo --minify
+
+    - name: Push changes
+      id: git_push
+      run: |
+        # Pull first
+        git pull --rebase origin "${GITHUB_REF}"
+        # Push after
+        git push origin "${GITHUB_REF}"
 
     - name: Deploy
       uses: peaceiris/actions-gh-pages@v3
