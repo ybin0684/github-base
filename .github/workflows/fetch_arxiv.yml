@@ -75,7 +75,7 @@ jobs:
 
     - name: Build the site
       run: |
-        mkdir public
+        # mkdir public
         hugo --minify
 
     - name: Deploy to GitHub Pages
