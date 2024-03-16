@@ -27,4 +27,38 @@ jobs:
 
     - name: Run Python script
       run: |
-        python arxiv_daily_fetcher.py
+        python arxiv_daily_fetcher.py >> content/basics/first_content.md
+
+    - name: Add and commit changes
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add content/basics/first_content.md
+        git commit -m "Update arXiv papers list"
+
+    - name: Push changes
+      uses: ad-m/github-push-action@master
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '14'
+
+    - name: Install Hugo
+      run: |
+        npm install -g hugo
+        hugo version
+
+    - name: Build the site
+      run: |
+        mkdir public
+        hugo --minify
+
+    - name: Deploy to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./public
+        force_push: true
