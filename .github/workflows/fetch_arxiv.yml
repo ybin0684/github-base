@@ -88,6 +88,7 @@ jobs:
         git push origin "${GITHUB_REF}"
         ls /home/runner/work/github-base/
         ls /home/runner/work/github-base/github-base
+        echo ''current dir:' $PWD ${GITHUB_REF}
 
     - name: Deploy
       uses: peaceiris/actions-gh-pages@v3
