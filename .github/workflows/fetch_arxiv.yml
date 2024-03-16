@@ -72,9 +72,18 @@ jobs:
     #     echo 'info------------'
     #     ls /home/runner/work/github-base/github-base/public
 
-    - name: Deploy
-      uses: peaceiris/actions-gh-pages@v3
+    # - name: Deploy
+    #   uses: peaceiris/actions-gh-pages@v3
+    #   with:
+    #     github_token: ${{ secrets.GITHUB_TOKEN }}
+    #     publish_dir: public
+    #     allow_empty_commit: true
+
+    - name: Upload artifact
+      uses: actions/upload-pages-artifact@v3
       with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: public
-        allow_empty_commit: true
+        # Upload entire repository
+        path: './public'
+    - name: Deploy to GitHub Pages
+      id: deployment
+      uses: actions/deploy-pages@v4
