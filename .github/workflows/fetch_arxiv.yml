@@ -73,17 +73,27 @@ jobs:
     #     npm install -g hugo
     #     hugo version
 
-    - name: Build the site
-      run: |
-        mkdir -p public
-        cd $GITHUB_WORKSPACE
-        echo $PWD
-        ls
-        hugo -v
+    # - name: Build the site
+    #   run: |
+    #     mkdir -p public
+    #     cd $GITHUB_WORKSPACE
+    #     echo $PWD
+    #     ls
+    #     hugo -v
 
-    - name: Deploy to GitHub Pages
+    # - name: Deploy to GitHub Pages
+    #   uses: peaceiris/actions-gh-pages@v3
+    #   with:
+    #     github_token: ${{ secrets.GITHUB_TOKEN }}
+    #     publish_dir: ./public
+        # force_push: true
+
+    - name: Build
+      run: hugo --minify
+
+    - name: Deploy
       uses: peaceiris/actions-gh-pages@v3
+      if: github.ref == 'refs/heads/main'
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_dir: ./public
-        # force_push: true
