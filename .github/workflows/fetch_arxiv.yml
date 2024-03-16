@@ -34,7 +34,8 @@ jobs:
 
     - name: Run Python script
       run: |
-        python arxiv_daily_fetcher.py >> content/basics/first_content.md
+        # python arxiv_daily_fetcher.py >> content/basics/first_content.md
+        echo aaa >> content/basics/first_content.md
 
     - name: Add and commit changes
       run: |
