@@ -1,7 +1,8 @@
 # .github/workflows/fetch_arxiv.yml
 name: Fetch Daily arXiv Papers
 
-
+permissions:
+  contents: write
   
 on:
   schedule:
