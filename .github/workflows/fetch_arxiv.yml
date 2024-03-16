@@ -75,8 +75,9 @@ jobs:
 
     - name: Build the site
       run: |
-        # mkdir public
-        hugo --minify
+        mkdir -p public
+        cd $GITHUB_WORKSPACE
+        hugo -v
 
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
