@@ -44,7 +44,7 @@ jobs:
     - name: Run Python script
       run: |
         # python arxiv_daily_fetcher.py >> content/basics/first_content.md
-        echo aaa >> content/basics/first_content.md
+        echo aaa # >> content/basics/first_content.md
 
     - name: Setup Hugo
       uses: peaceiris/actions-hugo@v2
